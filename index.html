@@ -19,7 +19,7 @@ background:#000;
 font-family:Arial,sans-serif;
 }
 
-/* ===== MAIN ===== */
+/* ===== MAIN OVERLAY ===== */
 
 .overlay{
 
@@ -33,16 +33,16 @@ flex-direction:column;
 
 background:
 radial-gradient(circle at center,
-rgba(160,0,255,0.18) 0%,
-rgba(0,0,0,0.72) 40%,
-rgba(0,0,0,0.92) 100%
+rgba(160,0,255,0.14) 0%,
+rgba(0,0,0,0.72) 45%,
+rgba(0,0,0,0.94) 100%
 );
 
-animation:introFlash 0.7s ease;
+animation:introFade 1.2s ease;
 
 }
 
-/* ===== LIVE BACKGROUND ===== */
+/* ===== LIVING BACKGROUND ===== */
 
 .bgPulse{
 
@@ -51,12 +51,12 @@ inset:-10%;
 
 background:
 radial-gradient(circle,
-rgba(255,0,255,0.12),
+rgba(255,0,255,0.08),
 transparent 70%);
 
-filter:blur(80px);
+filter:blur(90px);
 
-animation:bgMove 8s ease-in-out infinite;
+animation:bgMove 12s ease-in-out infinite;
 
 }
 
@@ -70,23 +70,25 @@ inset:0;
 background:
 repeating-linear-gradient(
 to bottom,
-rgba(255,255,255,0.025) 0px,
-rgba(255,255,255,0.025) 2px,
+rgba(255,255,255,0.018) 0px,
+rgba(255,255,255,0.018) 2px,
 transparent 4px,
 transparent 6px
 );
 
+opacity:0.45;
+
 mix-blend-mode:screen;
 
-animation:scanMove 8s linear infinite;
+animation:scanMove 12s linear infinite;
 
 pointer-events:none;
 
 }
 
-/* ===== RANDOM GLITCH FLASH ===== */
+/* ===== SMOOTH GLITCH LIGHT ===== */
 
-.glitchFlash{
+.glowFlash{
 
 position:absolute;
 inset:0;
@@ -95,13 +97,13 @@ background:
 linear-gradient(
 90deg,
 transparent,
-rgba(255,255,255,0.04),
+rgba(255,255,255,0.025),
 transparent
 );
 
 opacity:0;
 
-animation:flashRandom 4s infinite;
+animation:softFlash 8s infinite;
 
 }
 
@@ -109,24 +111,24 @@ animation:flashRandom 4s infinite;
 
 .icon{
 
-font-size:72px;
+font-size:74px;
 
-margin-bottom:20px;
+margin-bottom:24px;
 
 color:white;
 
 text-shadow:
-0 0 10px #fff,
-0 0 25px #ff00ff,
-0 0 40px #00e5ff;
+0 0 10px rgba(255,255,255,0.7),
+0 0 25px rgba(255,0,255,0.55),
+0 0 40px rgba(0,229,255,0.45);
 
-animation:iconPulse 2s infinite;
+animation:iconPulse 4s ease-in-out infinite;
 
 z-index:5;
 
 }
 
-/* ===== TITLE ===== */
+/* ===== MAIN TITLE ===== */
 
 .glitch{
 
@@ -135,60 +137,34 @@ position:relative;
 font-size:96px;
 font-weight:900;
 
-color:#ff4dff;
-
 letter-spacing:4px;
-
 text-transform:uppercase;
 
 z-index:5;
 
+background:
+linear-gradient(
+90deg,
+#00e5ff,
+#ff00ff,
+#ffffff,
+#ff00ff,
+#00e5ff
+);
+
+background-size:300% 100%;
+
+-webkit-background-clip:text;
+background-clip:text;
+
+color:transparent;
+
 text-shadow:
-0 0 10px #ff00ff,
-0 0 20px #ff00ff,
-0 0 40px #00e5ff,
-0 0 80px #00e5ff;
+0 0 14px rgba(0,229,255,0.7),
+0 0 30px rgba(255,0,255,0.55),
+0 0 60px rgba(0,229,255,0.35);
 
-animation:
-mainFlicker 2s infinite,
-mainShake 5s infinite;
-
-}
-
-/* RGB layers */
-
-.glitch:before,
-.glitch:after{
-
-content:"СИГНАЛ ПОТЕРЯН";
-
-position:absolute;
-left:0;
-top:0;
-
-}
-
-.glitch:before{
-
-color:#00e5ff;
-
-transform:translate(-4px,0);
-
-opacity:0.7;
-
-animation:rgb1 0.22s infinite;
-
-}
-
-.glitch:after{
-
-color:#ff00ff;
-
-transform:translate(4px,0);
-
-opacity:0.7;
-
-animation:rgb2 0.22s infinite;
+animation:neonFlow 8s ease-in-out infinite;
 
 }
 
@@ -206,22 +182,22 @@ letter-spacing:4px;
 color:white;
 
 text-shadow:
-0 0 8px #fff,
-0 0 20px #ff00ff;
+0 0 8px rgba(255,255,255,0.75),
+0 0 20px rgba(255,0,255,0.4);
 
 z-index:5;
 
-animation:flickerSoft 3s infinite;
+animation:softTextGlow 5s ease-in-out infinite;
 
 }
 
-/* ===== TG ===== */
+/* ===== TELEGRAM ===== */
 
 .tg{
 
 margin-top:18px;
 
-font-size:38px;
+font-size:40px;
 font-weight:900;
 
 letter-spacing:2px;
@@ -231,11 +207,11 @@ color:#00e5ff;
 z-index:5;
 
 text-shadow:
-0 0 10px #00e5ff,
-0 0 25px #00e5ff,
-0 0 45px #00e5ff;
+0 0 10px rgba(0,229,255,0.75),
+0 0 24px rgba(0,229,255,0.55),
+0 0 40px rgba(255,0,255,0.35);
 
-animation:tgPulse 2s infinite;
+animation:tgPulse 3s ease-in-out infinite;
 
 }
 
@@ -243,7 +219,7 @@ animation:tgPulse 2s infinite;
 
 .bar{
 
-margin-top:40px;
+margin-top:42px;
 
 width:420px;
 height:6px;
@@ -264,7 +240,7 @@ content:"";
 
 display:block;
 
-width:40%;
+width:35%;
 height:100%;
 
 background:
@@ -272,10 +248,14 @@ linear-gradient(
 90deg,
 #ff00ff,
 #00e5ff,
+#ffffff,
+#00e5ff,
 #ff00ff
 );
 
-animation:loading 2s infinite ease-in-out;
+border-radius:999px;
+
+animation:loading 4s ease-in-out infinite;
 
 }
 
@@ -288,11 +268,11 @@ position:absolute;
 width:120px;
 height:120px;
 
-opacity:0.35;
+opacity:0.18;
 
 border-color:#00e5ff;
 
-animation:cornerPulse 3s infinite;
+animation:cornerGlow 6s ease-in-out infinite;
 
 }
 
@@ -326,18 +306,40 @@ border-right:2px solid;
 
 /* ===== ANIMATIONS ===== */
 
-@keyframes introFlash{
+@keyframes introFade{
 
 0%{
 opacity:0;
-transform:scale(1.03);
-filter:blur(12px);
+transform:scale(1.02);
+filter:blur(10px);
 }
 
 100%{
 opacity:1;
 transform:scale(1);
 filter:blur(0);
+}
+
+}
+
+@keyframes neonFlow{
+
+0%{
+background-position:0% 50%;
+filter:brightness(1);
+transform:scale(1);
+}
+
+50%{
+background-position:100% 50%;
+filter:brightness(1.16);
+transform:scale(1.01);
+}
+
+100%{
+background-position:0% 50%;
+filter:brightness(1);
+transform:scale(1);
 }
 
 }
@@ -349,7 +351,7 @@ transform:translate(-2%,-2%) scale(1);
 }
 
 50%{
-transform:translate(2%,2%) scale(1.08);
+transform:translate(2%,2%) scale(1.06);
 }
 
 100%{
@@ -370,60 +372,13 @@ transform:translateY(8px);
 
 }
 
-@keyframes flashRandom{
+@keyframes softFlash{
 
 0%{opacity:0;}
-5%{opacity:0;}
-6%{opacity:1;}
-7%{opacity:0;}
-
+45%{opacity:0;}
+50%{opacity:0.18;}
 55%{opacity:0;}
-56%{opacity:1;}
-57%{opacity:0;}
-
 100%{opacity:0;}
-
-}
-
-@keyframes rgb1{
-
-0%{transform:translate(-4px,0);}
-25%{transform:translate(-8px,2px);}
-50%{transform:translate(2px,-2px);}
-75%{transform:translate(-2px,1px);}
-100%{transform:translate(-4px,0);}
-
-}
-
-@keyframes rgb2{
-
-0%{transform:translate(4px,0);}
-25%{transform:translate(8px,-2px);}
-50%{transform:translate(-2px,2px);}
-75%{transform:translate(2px,-1px);}
-100%{transform:translate(4px,0);}
-
-}
-
-@keyframes mainFlicker{
-
-0%{opacity:1;}
-48%{opacity:1;}
-49%{opacity:0.92;}
-50%{opacity:1;}
-70%{opacity:0.96;}
-100%{opacity:1;}
-
-}
-
-@keyframes mainShake{
-
-0%{transform:translate(0);}
-96%{transform:translate(0);}
-97%{transform:translate(-2px,1px);}
-98%{transform:translate(2px,-1px);}
-99%{transform:translate(-1px,2px);}
-100%{transform:translate(0);}
 
 }
 
@@ -431,17 +386,17 @@ transform:translateY(8px);
 
 0%{
 transform:scale(1);
-opacity:0.75;
+opacity:0.72;
 }
 
 50%{
-transform:scale(1.06);
+transform:scale(1.04);
 opacity:1;
 }
 
 100%{
 transform:scale(1);
-opacity:0.75;
+opacity:0.72;
 }
 
 }
@@ -449,18 +404,18 @@ opacity:0.75;
 @keyframes iconPulse{
 
 0%{
+opacity:0.65;
 transform:scale(1);
-opacity:0.7;
 }
 
 50%{
-transform:scale(1.1);
 opacity:1;
+transform:scale(1.05);
 }
 
 100%{
+opacity:0.65;
 transform:scale(1);
-opacity:0.7;
 }
 
 }
@@ -472,28 +427,44 @@ transform:translateX(-140%);
 }
 
 50%{
-transform:translateX(100%);
+transform:translateX(120%);
 }
 
 100%{
-transform:translateX(240%);
+transform:translateX(260%);
 }
 
 }
 
-@keyframes flickerSoft{
+@keyframes cornerGlow{
 
-0%{opacity:1;}
-50%{opacity:0.9;}
-100%{opacity:1;}
+0%{
+opacity:0.12;
+}
+
+50%{
+opacity:0.28;
+}
+
+100%{
+opacity:0.12;
+}
 
 }
 
-@keyframes cornerPulse{
+@keyframes softTextGlow{
 
-0%{opacity:0.2;}
-50%{opacity:0.55;}
-100%{opacity:0.2;}
+0%{
+opacity:0.82;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+opacity:0.82;
+}
 
 }
 
@@ -508,7 +479,7 @@ transform:translateX(240%);
 
 <div class="scanlines"></div>
 
-<div class="glitchFlash"></div>
+<div class="glowFlash"></div>
 
 <div class="corner tl"></div>
 <div class="corner tr"></div>
