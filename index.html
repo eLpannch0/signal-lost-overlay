@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Сигнал потерян</title>
+
+<style>
+
+html,body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+background:transparent;
+font-family:Arial, sans-serif;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:
+linear-gradient(
+180deg,
+rgba(0,0,0,0.35),
+rgba(0,0,0,0.55)
+);
+
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.glitch{
+position:relative;
+
+font-size:72px;
+font-weight:bold;
+
+color:white;
+
+text-transform:uppercase;
+
+animation:flicker 1.5s infinite;
+}
+
+.glitch:before,
+.glitch:after{
+content:"СИГНАЛ ПОТЕРЯН";
+
+position:absolute;
+left:0;
+top:0;
+}
+
+.glitch:before{
+color:#00e5ff;
+transform:translate(-3px,0);
+opacity:0.7;
+animation:glitch1 0.3s infinite;
+}
+
+.glitch:after{
+color:#ff00ff;
+transform:translate(3px,0);
+opacity:0.7;
+animation:glitch2 0.3s infinite;
+}
+
+.sub{
+margin-top:20px;
+
+font-size:28px;
+
+color:white;
+
+letter-spacing:3px;
+}
+
+.lines{
+position:absolute;
+width:100%;
+height:100%;
+
+background:
+repeating-linear-gradient(
+to bottom,
+transparent 0px,
+rgba(255,255,255,0.03) 2px,
+transparent 4px
+);
+
+pointer-events:none;
+
+animation:scan 8s linear infinite;
+}
+
+.noise{
+position:absolute;
+width:100%;
+height:100%;
+
+background-image:
+url("https://i.imgur.com/8fK4h6B.png");
+
+opacity:0.06;
+
+mix-blend-mode:screen;
+
+animation:noise 0.2s infinite;
+}
+
+@keyframes glitch1{
+0%{transform:translate(-3px,0);}
+25%{transform:translate(-6px,2px);}
+50%{transform:translate(2px,-2px);}
+75%{transform:translate(-1px,1px);}
+100%{transform:translate(-3px,0);}
+}
+
+@keyframes glitch2{
+0%{transform:translate(3px,0);}
+25%{transform:translate(6px,-2px);}
+50%{transform:translate(-2px,2px);}
+75%{transform:translate(1px,-1px);}
+100%{transform:translate(3px,0);}
+}
+
+@keyframes flicker{
+0%{opacity:1;}
+50%{opacity:0.92;}
+100%{opacity:1;}
+}
+
+@keyframes scan{
+0%{transform:translateY(0);}
+100%{transform:translateY(4px);}
+}
+
+@keyframes noise{
+0%{transform:translate(0);}
+25%{transform:translate(-1%,1%);}
+50%{transform:translate(1%,-1%);}
+75%{transform:translate(2%,1%);}
+100%{transform:translate(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="noise"></div>
+<div class="lines"></div>
+
+<div class="glitch">
+СИГНАЛ ПОТЕРЯН
+</div>
+
+<div class="sub">
+НЕТ ДОСТУПА К КАМЕРЕ
+</div>
+
+</div>
+
+</body>
+</html>
