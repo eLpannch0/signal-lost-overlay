@@ -5,169 +5,242 @@
 <title>Сигнал потерян</title>
 
 <style>
-
-html,body{
-margin:0;
-padding:0;
-width:100%;
-height:100%;
-overflow:hidden;
-background:transparent;
-font-family:Arial, sans-serif;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-family: Arial, sans-serif;
 }
 
-.overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-
-background:
-linear-gradient(
-180deg,
-rgba(0,0,0,0.35),
-rgba(0,0,0,0.55)
-);
-
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
+.overlay {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(140,0,255,0.18), rgba(0,0,0,0.92) 65%),
+    linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.95));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.glitch{
-position:relative;
-
-font-size:72px;
-font-weight:bold;
-
-color:white;
-
-text-transform:uppercase;
-
-animation:flicker 1.5s infinite;
+.lines {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      rgba(255,255,255,0.04) 2px,
+      transparent 4px
+    );
+  pointer-events: none;
+  animation: scan 7s linear infinite;
 }
 
-.glitch:before,
-.glitch:after{
-content:"СИГНАЛ ПОТЕРЯН";
-
-position:absolute;
-left:0;
-top:0;
+.glitch {
+  position: relative;
+  font-size: 92px;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow:
+    0 0 12px #ffffff,
+    0 0 24px #b000ff,
+    0 0 40px #00e5ff;
+  animation: flicker 1.4s infinite;
+  z-index: 2;
 }
 
-.glitch:before{
-color:#00e5ff;
-transform:translate(-3px,0);
-opacity:0.7;
-animation:glitch1 0.3s infinite;
+.glitch::before,
+.glitch::after {
+  content: "СИГНАЛ ПОТЕРЯН";
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.glitch:after{
-color:#ff00ff;
-transform:translate(3px,0);
-opacity:0.7;
-animation:glitch2 0.3s infinite;
+.glitch::before {
+  color: #00e5ff;
+  transform: translate(-4px, 0);
+  opacity: 0.75;
+  animation: glitch1 0.28s infinite;
 }
 
-.sub{
-margin-top:20px;
-
-font-size:28px;
-
-color:white;
-
-letter-spacing:3px;
+.glitch::after {
+  color: #ff00ff;
+  transform: translate(4px, 0);
+  opacity: 0.75;
+  animation: glitch2 0.28s infinite;
 }
 
-.lines{
-position:absolute;
-width:100%;
-height:100%;
-
-background:
-repeating-linear-gradient(
-to bottom,
-transparent 0px,
-rgba(255,255,255,0.03) 2px,
-transparent 4px
-);
-
-pointer-events:none;
-
-animation:scan 8s linear infinite;
+.sub {
+  margin-top: 26px;
+  font-size: 34px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 4px;
+  text-shadow:
+    0 0 10px #ffffff,
+    0 0 18px #b000ff;
+  z-index: 2;
 }
 
-.noise{
-position:absolute;
-width:100%;
-height:100%;
-
-background-image:
-url("https://i.imgur.com/8fK4h6B.png");
-
-opacity:0.06;
-
-mix-blend-mode:screen;
-
-animation:noise 0.2s infinite;
+.tg {
+  margin-top: 18px;
+  font-size: 36px;
+  font-weight: 900;
+  color: #00e5ff;
+  letter-spacing: 3px;
+  text-shadow:
+    0 0 10px #00e5ff,
+    0 0 22px #00e5ff,
+    0 0 38px #b000ff;
+  animation: pulse 2s infinite;
+  z-index: 2;
 }
 
-@keyframes glitch1{
-0%{transform:translate(-3px,0);}
-25%{transform:translate(-6px,2px);}
-50%{transform:translate(2px,-2px);}
-75%{transform:translate(-1px,1px);}
-100%{transform:translate(-3px,0);}
+.warning {
+  margin-bottom: 34px;
+  font-size: 80px;
+  color: white;
+  text-shadow:
+    0 0 12px #ffffff,
+    0 0 28px #ff00ff,
+    0 0 45px #00e5ff;
+  animation: pulseIcon 1.5s infinite;
+  z-index: 2;
 }
 
-@keyframes glitch2{
-0%{transform:translate(3px,0);}
-25%{transform:translate(6px,-2px);}
-50%{transform:translate(-2px,2px);}
-75%{transform:translate(1px,-1px);}
-100%{transform:translate(3px,0);}
+.bar {
+  margin-top: 38px;
+  width: 420px;
+  height: 6px;
+  background: rgba(255,255,255,0.16);
+  border-radius: 999px;
+  overflow: hidden;
+  z-index: 2;
 }
 
-@keyframes flicker{
-0%{opacity:1;}
-50%{opacity:0.92;}
-100%{opacity:1;}
+.bar::after {
+  content: "";
+  display: block;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, #b000ff, #00e5ff, #ff00ff);
+  animation: loading 2.2s infinite ease-in-out;
 }
 
-@keyframes scan{
-0%{transform:translateY(0);}
-100%{transform:translateY(4px);}
+.corner {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-color: rgba(255,255,255,0.55);
+  z-index: 2;
 }
 
-@keyframes noise{
-0%{transform:translate(0);}
-25%{transform:translate(-1%,1%);}
-50%{transform:translate(1%,-1%);}
-75%{transform:translate(2%,1%);}
-100%{transform:translate(0);}
+.corner.tl {
+  top: 50px;
+  left: 50px;
+  border-top: 3px solid;
+  border-left: 3px solid;
 }
 
+.corner.tr {
+  top: 50px;
+  right: 50px;
+  border-top: 3px solid;
+  border-right: 3px solid;
+}
+
+.corner.bl {
+  bottom: 50px;
+  left: 50px;
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+}
+
+.corner.br {
+  bottom: 50px;
+  right: 50px;
+  border-bottom: 3px solid;
+  border-right: 3px solid;
+}
+
+@keyframes glitch1 {
+  0% { transform: translate(-4px, 0); }
+  20% { transform: translate(-8px, 3px); }
+  40% { transform: translate(3px, -3px); }
+  60% { transform: translate(-2px, 2px); }
+  80% { transform: translate(6px, -1px); }
+  100% { transform: translate(-4px, 0); }
+}
+
+@keyframes glitch2 {
+  0% { transform: translate(4px, 0); }
+  20% { transform: translate(8px, -3px); }
+  40% { transform: translate(-3px, 3px); }
+  60% { transform: translate(2px, -2px); }
+  80% { transform: translate(-6px, 1px); }
+  100% { transform: translate(4px, 0); }
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  45% { opacity: 0.92; }
+  50% { opacity: 1; }
+  55% { opacity: 0.86; }
+  100% { opacity: 1; }
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.72; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+  100% { opacity: 0.72; transform: scale(1); }
+}
+
+@keyframes pulseIcon {
+  0% { opacity: 0.65; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 0.65; transform: scale(1); }
+}
+
+@keyframes loading {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(90%); }
+  100% { transform: translateX(240%); }
+}
 </style>
 </head>
 
 <body>
 
 <div class="overlay">
+  <div class="lines"></div>
 
-<div class="noise"></div>
-<div class="lines"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
 
-<div class="glitch">
-СИГНАЛ ПОТЕРЯН
-</div>
+  <div class="warning">⚠</div>
 
-<div class="sub">
-НЕТ ДОСТУПА К КАМЕРЕ
-</div>
+  <div class="glitch">СИГНАЛ ПОТЕРЯН</div>
 
+  <div class="sub">ПОДПИШИСЬ НА TELEGRAM</div>
+
+  <div class="tg">t.me/elpannch0_live</div>
+
+  <div class="bar"></div>
 </div>
 
 </body>
